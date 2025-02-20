@@ -1,5 +1,12 @@
 from django.db import models
 
+STATUSES = [
+		("O", "открытa"),
+		("C", "закрытa"),
+		("IP", "в процессе"),
+		("NI", "нужна информация"),
+	]
+
 class Device(models.Model):
 	''' Модель оборудования '''
 	
@@ -38,7 +45,7 @@ class DeviceInField(models.Model):
 		verbose_name_plural = "оборудование в полях"
 		
 	serial_number = models.CharField(verbose_name="серийный номер")
-	owner_status = models.CharField(verbose_name="статус заказа")
+	owner_status = models.CharField(verbose_name="статус заказа", choices=STATUSES)
 	customer = models.ForeignKey(Customer, on_delete=models.RESTRICT, verbose_name="идентификатор пользователя")
 	equipment = models.ForeignKey(Device, on_delete=models.RESTRICT, verbose_name="идентификатор оборудования")
 	
@@ -53,19 +60,12 @@ class Order(models.Model):
 		verbose_name = 'заявки'
 		verbose_name_plural = 'заявки'
 		
-	statuses = [
-		("O", "открытa"),
-		("C", "закрытa"),
-		("IP", "в процессе"),
-		("NI", "нужна информация"),
-	]
-		
 	device = models.ForeignKey(DeviceInField, verbose_name='оборудование', on_delete=models.RESTRICT)
 	customer = models.ForeignKey(Customer, verbose_name='заказчик', on_delete=models.RESTRICT)
 	order_description = models.CharField(verbose_name='описание заявки')
 	created_at = models.DateTimeField(verbose_name='создано в', auto_now_add=True)
 	updated_at = models.DateTimeField(verbose_name='последнее изменение', auto_now=True)
-	order_status = models.CharField(verbose_name='статус заявки', choices=statuses)
+	order_status = models.CharField(verbose_name='статус заявки', choices=STATUSES)
 
 	def __str__(self):
 		return f"заказ №{self.id} для {self.device}"
