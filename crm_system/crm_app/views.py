@@ -11,21 +11,21 @@ def main_page(request):
 		"title": "crm app",
 		"data": [
 			{
-				"button_link": "admin",
+				"button_link": "admin/",
 				"title": "Заявки",
 				"subtitle": "прошу, не пишите заявление",
 				"overview": "Работа с заявками на оборудование",
 				"img_src": "crm_app/img/zayavka2.png"
 			},
 			{
-				"button_link": "devpage",
-				"title": "Персонал",
+				"button_link": "devices/",
+				"title": "Девайсы",
 				"subtitle": "персОнал",
-				"overview": "Работа с базами персонала",
+				"overview": "Работа с оборудованием",
 				"img_src": "crm_app/img/personal.png"
 			},
 			{
-				"button_link": "devpage",
+				"button_link": "devpage/",
 				"title": "Финансы",
 				"subtitle": "за деньги да",
 				"overview": "Работа с базами финансов",

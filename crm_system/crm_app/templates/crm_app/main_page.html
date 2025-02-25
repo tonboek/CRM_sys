@@ -14,11 +14,12 @@
 										<div class="card-img-overlay d-flex flex-column" style="background-image: url('{% get_static_prefix %}{{ el.img_src }}')">
 												<div class="card-body">
 														<small class="card-meta mb-2">{{ el.subtitle }}</small>
-														<h4 class="card-title mt-0 text-dark">{{ el.title }}</h4>
+														<h4 class="card-title mt-0">{{ el.title }}</h4>
+														<h5 class="card-title mt-0">{{ el.overview }}</h5>
 												</div>
 										</div>
 								</div>
-						</a>
+							</a>
 						</div>
 					{% endfor %}
 				</div>

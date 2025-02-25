@@ -3,34 +3,35 @@
 {% block content %}
 
 <form action="/devices/" method="post">
-  {% csrf_token %}
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Введите ID, модель, производителя..." aria-label="Recipient's username" aria-describedby="basic-addon2" name="data_for_search" value="{{ current_name }}">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="submit" value="OK">Поиск</button>
-    </div>
-  </div>
+	{% csrf_token %}
+	<div class="input-group mb-3">
+		<input type="text" class="form-control" placeholder="Введите ID, модель, производителя..." aria-label="Recipient's username" aria-describedby="basic-addon2" name="data_for_search" value="{{ current_name }}" />
+		<div class="input-group-append">
+			<button class="btn btn-outline-secondary" type="submit" value="OK">Поиск</button>
+		</div>
+	</div>
 </form>
 
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Пользователь</th>
-      <th scope="col">Оборудование</th>
-      <th scope="col">Статус принадлежности</th>
-    </tr>
-  </thead>
-    <tbody>
-      {% for device in devices %}
-      <tr>
-        <th scope="row">{{device.id}}</th>
-        <td>{{device.customer}}</td>
-        <td>{{device.equipment}}</td>
-        <td>{{device.get_owner_status_display}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Пользователь</th>
+			<th scope="col">Оборудование</th>
+			<th scope="col">Статус принадлежности</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for device in devices %}
+		<tr>
+			<th scope="row">{{device.id}}</th>
+			<td>{{device.customer}}</td>
+			<td>{{device.equipment}}</td>
+			<td>{{device.get_owner_status_display}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
 
 {% endblock %}
